@@ -118,6 +118,9 @@ void JJM_Log(const char* color, string message, ...);
 // Outputs a message to the console with a specified color.
 void JJM_Log(Color color, string message, ...);
 
+// Outputs a prominent message for debugging purposes.
+void JJM_Debug(const char* message, ...);
+
 const char* __get_enum_color(Color color);
 
 template<typename T>
