@@ -13,17 +13,17 @@ private:
 	T* iter;
 	T* data;
 
-	void Heapify(l_size n, l_size i) {
+	void Heapify(l_size max, l_size i) {
 		l_size largest = i;
-		l_size left = 2 * largest + 1;
-		l_size right = 2 * largest + 2;
-		if (left < n && data[left] > data[largest])
+		l_size left = 2 * i + 1;
+		l_size right = 2 * i + 2;
+		if (left < max && data[left] > data[largest])
 			largest = left;
-		if (right < n && data[right] > data[largest])
+		if (right < max && data[right] > data[largest])
 			largest = right;
 		if (largest != i) {
 			Swap(i, largest);
-			Heapify(n, largest);
+			Heapify(max, largest);
 		}
 	}
 
@@ -130,8 +130,8 @@ public:
 	}
 
 	void Sort() {
-		for (l_size i{ size / 2 - 1 }; i >= 0; i--)
-			Heapify(size, i);
+		for (l_size i{ size / 2 }; i > 0; i--)
+			Heapify(size, i - 1);
 		for (l_size i{ size - 1 }; i > 0; i--) {
 			Swap(0, i);
 			Heapify(i, 0);
