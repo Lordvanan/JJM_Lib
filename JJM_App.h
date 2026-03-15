@@ -1,5 +1,5 @@
 #ifndef JJM_LIB_FRAMEWORK
-#define JJM_LIB_FRAMEWORK
+#define JJM_LIB_FRAMEWORK 1
 
 #include <iostream>
 #include <iomanip>
@@ -104,16 +104,10 @@ void __handle_invalid_selection();
 void JJM_Log(const char* message, ...);
 
 // Outputs a message to the console with a specified color.
-void JJM_Log(const char* color, const char* message, ...);
-
-// Outputs a message to the console with a specified color.
 void JJM_Log(Color color, const char* message, ...);
 
 // Outputs a message to the console.
 void JJM_Log(string message, ...);
-
-// Outputs a message to the console with a specified color.
-void JJM_Log(const char* color, string message, ...);
 
 // Outputs a message to the console with a specified color.
 void JJM_Log(Color color, string message, ...);
@@ -154,20 +148,6 @@ inline T JJM_Input(const char* prompt, ...)
 
 // Using a user input prompt in a specified color and data type definition, takes the user's input from the console.
 template<typename T>
-inline T JJM_Input(const char* color, const char* prompt, ...)
-{
-	cout << color;
-	va_list args;
-	va_start(args, prompt);
-	vprintf(prompt, args);
-	va_end(args);
-	cout << WHITE_T;
-
-	return __get_user_input<T>();
-}
-
-// Using a user input prompt in a specified color and data type definition, takes the user's input from the console.
-template<typename T>
 inline T JJM_Input(Color color, const char* prompt, ...)
 {
 	cout << __get_enum_color(color);
@@ -188,20 +168,6 @@ inline T JJM_Input(string prompt, ...)
 	va_start(args, prompt);
 	vprintf(prompt.c_str(), args);
 	va_end(args);
-
-	return __get_user_input<T>();
-}
-
-// Using a user input prompt in a specified color and data type definition, takes the user's input from the console.
-template<typename T>
-inline T JJM_Input(const char* color, string prompt, ...)
-{
-	cout << color;
-	va_list args;
-	va_start(args, prompt);
-	vprintf(prompt.c_str(), args);
-	va_end(args);
-	cout << WHITE_T;
 
 	return __get_user_input<T>();
 }

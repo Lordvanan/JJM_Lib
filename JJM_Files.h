@@ -1,5 +1,5 @@
 #ifndef JJM_LIB_FILES
-#define JJM_LIB_FILES
+#define JJM_LIB_FILES 1
 
 #include <fstream>
 #include <string>

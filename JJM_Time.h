@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #ifndef JJM_LIB_TIME
-#define JJM_LIB_TIME
+#define JJM_LIB_TIME 1
 
 #include <chrono>
 #include <ctime>

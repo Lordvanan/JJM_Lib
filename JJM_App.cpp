@@ -9,16 +9,6 @@ void JJM_Log(const char* message, ...)
 	va_end(args);
 }
 
-void JJM_Log(const char* color, const char* message, ...)
-{
-	cout << color;
-	va_list args;
-	va_start(args, message);
-	vprintf(message, args);
-	va_end(args);
-	cout << WHITE_T;
-}
-
 void JJM_Log(Color color, const char* message, ...)
 {
 	cout << __get_enum_color(color);
@@ -35,16 +25,6 @@ void JJM_Log(string message, ...)
 	va_start(args, message);
 	vprintf(message.c_str(), args);
 	va_end(args);
-}
-
-void JJM_Log(const char* color, string message, ...)
-{
-	cout << color;
-	va_list args;
-	va_start(args, message);
-	vprintf(message.c_str(), args);
-	va_end(args);
-	cout << WHITE_T;
 }
 
 void JJM_Log(Color color, string message, ...)
