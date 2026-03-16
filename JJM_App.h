@@ -194,13 +194,24 @@ class JJM_Menu
 	size_t menuSize;
 	bool multiColumn;
 	int colSep;
+	Color titleColor;
+	Color itemColor;
 
 public:
 	// JJM_Menu contrustor the presents the menu in a single column.
 	JJM_Menu(string title, initializer_list<string> menuItems);
 
-	// JJM_Menu constructor that structures the menu in two columns separated by the column value provided.
+	// JJM_Menu constructor that structures the menu separated by the column value provided.
+	// Entering 0 for the column with arrange the items in a single column.
 	JJM_Menu(int column, string title, initializer_list<string> menuItems);
+
+	// JJM_Menu constructor that structures the menu separated by the column value provided, with the title color specified.
+	// Entering 0 for the column with arrange the items in a single column.
+	JJM_Menu(int column, Color titleColor, string title, initializer_list<string> menuItems);
+
+	// JJM_Menu constructor that structures the menu separated by the column value provided, with the title and item color specified.
+	// Entering 0 for the column with arrange the items in a single column.
+	JJM_Menu(int column, Color titleColor, Color itemColor, string title, initializer_list<string> menuItems);
 
 	// JJM_Menu destructor that frees the memory used for the menu items.
 	~JJM_Menu();

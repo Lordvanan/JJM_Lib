@@ -83,18 +83,21 @@ JJM_Menu::JJM_Menu(string title, initializer_list<string> menuItems)
 }
 
 JJM_Menu::JJM_Menu(int column, string title, initializer_list<string> menuItems)
-	: colSep{ column }, title{ title }, menuSize{ menuItems.size() }, multiColumn{ false }
-{
+	: JJM_Menu(column, Color::WHITE, Color::WHITE, title, menuItems) {
+}
+
+JJM_Menu::JJM_Menu(int column, Color titleColor, string title, initializer_list<string> menuItems)
+	: JJM_Menu(column, titleColor, Color::WHITE, title, menuItems) {
+}
+
+JJM_Menu::JJM_Menu(int column, Color titleColor, Color itemColor, string title, initializer_list<string> menuItems)
+	: colSep{ column }, titleColor{ titleColor }, itemColor{ itemColor }, title{ title }, menuSize{ menuItems.size() }, multiColumn{ false } {
 	if (colSep != 0)
-	{
 		multiColumn = true;
-	}
 
 	items = new string[menuSize];
 	for (size_t i{ 0 }; i < menuSize; i++)
-	{
 		items[i] = *(menuItems.begin() + i);
-	}
 }
 
 JJM_Menu::~JJM_Menu()
@@ -105,7 +108,7 @@ JJM_Menu::~JJM_Menu()
 void JJM_Menu::Display() const
 {
 	int itemNum{ 0 };
-	cout << title << "\n\n";
+	cout << __get_enum_color(titleColor) << title << "\n\n" << WHITE_T;
 
 	if (multiColumn)
 	{
@@ -114,7 +117,7 @@ void JJM_Menu::Display() const
 			itemNum = i + 1;
 			if (i % 2 == 0)
 			{
-				cout << itemNum << ") " << setw(colSep) << left << items[i];
+				cout << __get_enum_color(itemColor) << itemNum << ") " << setw(colSep) << left << items[i] << WHITE_T;
 				if (i == menuSize - 1)
 				{
 					cout << '\n';
@@ -122,7 +125,7 @@ void JJM_Menu::Display() const
 			}
 			else
 			{
-				cout << itemNum << ") " << items[i] << '\n';
+				cout << __get_enum_color(itemColor) << itemNum << ") " << items[i] << '\n' << WHITE_T;
 			}
 		}
 	}
@@ -131,7 +134,7 @@ void JJM_Menu::Display() const
 		for (size_t i{ 0 }; i < menuSize; i++)
 		{
 			itemNum = i + 1;
-			cout << itemNum << ") " << items[i] << '\n';
+			cout << __get_enum_color(itemColor) << itemNum << ") " << items[i] << '\n' << WHITE_T;
 		}
 	}
 }

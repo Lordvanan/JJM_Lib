@@ -75,6 +75,8 @@ public:
 
 		if (iter == nullptr)
 			iter = &data[0];
+		else
+			iter = &data[size - 1];
 	}
 
 	// Removes an existing item from the data container.
@@ -136,6 +138,13 @@ public:
 			Swap(0, i);
 			Heapify(i, 0);
 		}
+	}
+
+	void Clear() {
+		delete[] data;
+		iter = nullptr;
+		size = 0;
+		data = new T[size];
 	}
 
 	T& operator [] (l_size index) {

@@ -1,18 +1,49 @@
 #ifndef JJM_LIB_FILES
 #define JJM_LIB_FILES 1
 
+#include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 
 using std::ofstream;
 using std::ifstream;
 using std::ios;
 using std::string;
 
-struct JJM_File
+enum class Mode {
+	NONE,
+	WRITE,
+	APPEND,
+	READ
+};
+
+class JJM_File
 {
-	// JJM_File constructor that defines the file name to read and write to.
+private:
+	const char* filename;
+	bool file_open;
+	ofstream output_file;
+	Mode current_mode;
+
+public:
+	// Constructor that defines the file name including the directory.
 	JJM_File(const char* file);
+
+	// Cleanly closes up the file before destruction.
+	~JJM_File();
+
+	// Clears all contents of the file.
+	void Clear();
+
+	// Opens the file in write mode to override the current contents.
+	void Open();
+
+	// Opens the file in the mode specified.
+	void Open(Mode open_mode);
+
+	// Cleanly closes up the file.
+	void Close();
 
 	// Overwrites the contents of the file with a new stream.
 	void Write(const char* stream);
@@ -20,38 +51,14 @@ struct JJM_File
 	// Overwrites the contents of the file with a new stream.
 	void Write(string stream);
 
-	// Adds the given stream to the end of the existing file contents.
+	// Adds to the contents of the file with a new stream.
 	void Append(const char* stream);
 
-	// Adds the given stream to the end of the existing file contents.
+	// Adds to the contents of the file with a new stream.
 	void Append(string stream);
 
-	// Overwrites the contents of a file specified at the time of the function call.
-	static void Write(const char* file, const char* stream);
-
-	// Overwrites the contents of a file specified at the time of the function call.
-	static void Write(const char* file, string stream);
-
-	// Overwrites the contents of a file specified at the time of the function call.
-	static void Write(string file, const char* stream);
-
-	// Overwrites the contents of a file specified at the time of the function call.
-	static void Write(string file, string stream);
-
-	// Adds the given stream to the end of a file specified at the time of the function call.
-	static void Append(const char* file, const char* stream);
-
-	// Adds the given stream to the end of a file specified at the time of the function call.
-	static void Append(const char* file, string stream);
-
-	// Adds the given stream to the end of a file specified at the time of the function call.
-	static void Append(string file, const char* stream);
-
-	// Adds the given stream to the end of a file specified at the time of the function call.
-	static void Append(string file, string stream);
-
-private:
-	const char* filename;
+	void operator << (const char* stream);
+	void operator << (string stream);
 };
 
 #endif
