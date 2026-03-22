@@ -1,3 +1,4 @@
+#include <iosfwd>
 #ifndef JJM_LIB_FILES
 #define JJM_LIB_FILES 1
 
@@ -8,6 +9,7 @@
 
 using std::ofstream;
 using std::ifstream;
+using std::streampos;
 using std::ios;
 using std::string;
 
@@ -24,8 +26,15 @@ private:
 	const char* filename;
 	bool file_open;
 	ofstream output_file;
+	ifstream input_file;
 	Mode current_mode;
+	streampos begin;
+	streampos current;
+	streampos end;
 
+	int SetBegin();
+
+	int SetEnd();
 public:
 	// Constructor that defines the file name including the directory.
 	JJM_File(const char* file);
@@ -56,6 +65,10 @@ public:
 
 	// Adds to the contents of the file with a new stream.
 	void Append(string stream);
+
+	bool Read(string& out);
+
+	bool AtEnd();
 
 	void operator << (const char* stream);
 	void operator << (string stream);
