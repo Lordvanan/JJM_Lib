@@ -25,7 +25,6 @@ using std::initializer_list;
 // Macros for the AppResult values for easy use in programs.
 #define APP_CONTINUE AppResult::CONTINUE
 #define APP_QUIT AppResult::QUIT
-#define APP_ERROR AppResult::ERROR
 
 // Console output control macros for clean presentation.
 #define HOLD cout << "Press Enter to continue..."; cin.ignore(numeric_limits<streamsize>().max(), '\n'); getchar()
@@ -57,7 +56,6 @@ enum class AppResult
 {
 	CONTINUE,
 	QUIT,
-	ERROR,
 };
 
 enum class Color
@@ -82,13 +80,12 @@ enum class Color
 
 // The entry point for all programs implementing the JJM Framework.
 // Everything that needs to be done only at the beginning of the program should be included here.
-// If there is an issue with any initialization, you should return an APP_ERROR.
 // To continue on to the main loop of the program, return APP_CONTINUE.
 AppResult JJMApp_Start(int argc, char* argv[]);
 
 // The main loop of the program where all repeating procedures will be implemented.
-// This loop will continue until either an APP_ERROR occurs or the loop is ended by way of APP_QUIT.
-// If the loop is to continue, and there is no error, return APP_CONTINUE.
+// This loop will continue until APP_QUIT is returned.
+// If the loop is to continue, return APP_CONTINUE.
 // If the loop is to end, thus ending the program, return APP_QUIT.
 AppResult JJMApp_Loop();
 
