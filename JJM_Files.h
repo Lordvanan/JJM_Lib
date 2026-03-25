@@ -1,4 +1,3 @@
-#include <iosfwd>
 #ifndef JJM_LIB_FILES
 #define JJM_LIB_FILES 1
 
