@@ -26,3 +26,30 @@
     target_sources(MyProject PRIVATE main.cpp)
 
     target_link_libraries(MyProject PUBLIC JJM_Lib)
+ 
+ Then in the directory where your CMakeLists file is located, run the
+ following command:
+    cmake -S . -B <build directory> -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    cmake --build <build directory>
+ *********************************************************************
+ If that compiled and linked correctly, you should be able to add the
+ following code to your main.cpp file:
+    #define USE_JJM_CONTEXT 1
+    #include <JJM_App.h>
+
+    AppResult JJMApp_Start(int argc, char **argv)
+    {
+        return APP_CONTINUE;
+    }
+
+    AppResult JJMApp_Loop()
+    {
+        return APP_QUIT;
+    }
+
+    void JJMApp_End() 
+    {
+        
+    }
+ From there you can start exploring all of the different ever growing
+ features of this library.
