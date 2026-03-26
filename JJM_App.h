@@ -78,6 +78,7 @@ enum class Color
 	BRIGHT_WHITE
 };
 
+#ifdef USE_JJM_CONTEXT
 // The entry point for all programs implementing the JJM Framework.
 // Everything that needs to be done only at the beginning of the program should be included here.
 // To continue on to the main loop of the program, return APP_CONTINUE.
@@ -93,6 +94,7 @@ AppResult JJMApp_Loop();
 // This is called just prior to the final termination of the program.
 // Use this for any cleanup procedures that need to take place.
 void JJMApp_End();
+#endif
 
 // Safely clears input buffer, and throws an error message.
 void __handle_invalid_selection();
@@ -111,6 +113,9 @@ void JJM_Log(Color color, string message, ...);
 
 // Outputs a prominent message for debugging purposes.
 void JJM_Debug(const char* message, ...);
+
+// Outputs a prominent message for displaying errors.
+void JJM_Error(const char* message, ...);
 
 const char* __get_enum_color(Color color);
 

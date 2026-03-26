@@ -1,3 +1,4 @@
+#ifdef USE_JJM_CONTEXT
 #include "JJM_App.h"
 
 int main(int argc, char* argv[])
@@ -16,3 +17,4 @@ int main(int argc, char* argv[])
 	JJMApp_End();
 	return 0;
 }
+#endif

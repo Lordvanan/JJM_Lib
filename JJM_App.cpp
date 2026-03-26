@@ -47,6 +47,16 @@ void JJM_Debug(const char* message, ...)
 	cout << WHITE_T << '\n';
 }
 
+void JJM_Error(const char* message, ...)
+{
+	cout << BRIGHT_RED_T << "ERROR: ";
+	va_list args;
+	va_start(args, message);
+	vprintf(message, args);
+	va_end(args);
+	cout << WHITE_T << '\n';
+}
+
 const char* __get_enum_color(Color color)
 {
 	switch (color)
