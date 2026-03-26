@@ -30,8 +30,8 @@
  Then in the directory where your CMakeLists file is located, run the
  following command:
  ```
-    cmake -S . -B <build directory> -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-    cmake --build <build directory>
+cmake -S . -B <build directory> -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+cmake --build <build directory>
 ```
  *********************************************************************
  If that compiled and linked correctly, you should be able to add the
