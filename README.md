@@ -20,7 +20,7 @@
 cmake_minimum_required(VERSION 3.23.3)
 project(MyProject VERSION 1.0 LANGUAGES CXX C)
 
-add_subdirectory(../JJM_Lib JJM_Lib_build)
+add_subdirectory(<JJM_Lib directory> JJM_Lib_build)
 
 add_executable(MyProject)
 target_sources(MyProject PRIVATE main.cpp)
