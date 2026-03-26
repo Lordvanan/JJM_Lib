@@ -18,6 +18,7 @@ target_sources(JJM_Lib
 			JJM_Time.h
 			JJM_Files.h
 			JJM_List.h
+			JJM_Map.h
 )
 
 target_include_directories(JJM_Lib
