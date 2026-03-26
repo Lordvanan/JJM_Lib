@@ -34,6 +34,7 @@
  *********************************************************************
  If that compiled and linked correctly, you should be able to add the
  following code to your main.cpp file:
+ ```
     #define USE_JJM_CONTEXT 1
     #include <JJM_App.h>
 
@@ -51,5 +52,6 @@
     {
         
     }
+```
  From there you can start exploring all of the different ever growing
  features of this library.
