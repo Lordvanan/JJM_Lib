@@ -26,6 +26,7 @@ add_executable(MyProject)
 target_sources(MyProject PRIVATE main.cpp)
 
 target_link_libraries(MyProject PUBLIC JJM_Lib)
+target_compile_definitions(JJM_Lib PUBLIC USE_JJM_CONTEXT=1)
 ```
  Then in the directory where your CMakeLists file is located, run the
  following command:
@@ -37,7 +38,6 @@ cmake --build <build directory>
  If that compiled and linked correctly, you should be able to add the
  following code to your main.cpp file:
  ```
-#define USE_JJM_CONTEXT 1
 #include <JJM_App.h>
 
 AppResult JJMApp_Start(int argc, char **argv)
