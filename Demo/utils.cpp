@@ -14,41 +14,22 @@ Menu randMenu(0, Color::BRIGHT_GREEN, "Random Numbers",
 	"Back"
 });
 
-Menu generateMenu("",
-{
-	"Change range",
-	"Generate",
-	"Back"
-});
-
 void GenerateRandomNumbers()
 {
-	CLEAR;
+	Clear();
 	bool goBack{ false };
-	int iMin = 0, iMax = 100;
-	float fMin = 0.0, fMax = 1.0;
 	while (!goBack)
 	{
 		randMenu.Display();
 		switch (randMenu.Select())
 		{
-		case 0: CLEAR;
-			generateMenu.Display();
-			switch (generateMenu.Select())
-			{
-			case 0: CLEAR;
-
-			case 1:
-			case 2:
-			}
-
-		case 1: CLEAR;
-			Print("Number: %d\n", Rand::RangeEx((int)min, (int)max)); break;
-		case 2: CLEAR;
-			Print("Number: %d\n", Rand::RangeIn((int)min, (int)max)); break;
-		case 3: CLEAR;
-			Print("Number: %f\n", Rand::Rangef(min, max)); break;
-		case 4: CLEAR; goBack = true;
+		case 0: Clear();
+			Print("Range[0-100]: %d\n", Rand::RangeEx(0, 100)); break;
+		case 1: Clear();
+			Print("Range[0-100]: %d\n", Rand::RangeIn(0, 100)); break;
+		case 2: Clear();
+			Print("Range[0.0-1.0]: %f\n", Rand::Rangef(0.0, 1.0)); break;
+		case 3: Clear(); goBack = true;
 		}
 	}
 }

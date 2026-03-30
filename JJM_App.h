@@ -26,12 +26,6 @@ using std::initializer_list;
 #define CONTINUE AppResult::APP_CONTINUE
 #define QUIT AppResult::APP_QUIT
 
-// Console output control macros for clean presentation.
-#define HOLD cout << "Press Enter to continue..."; cin.ignore(numeric_limits<streamsize>().max(), '\n'); getchar()
-#define CLEAR system("clear")
-#define AWAIT HOLD; CLEAR
-#define NWLN cout << '\n'
-
 // Color definitions for text colors in the console
 #define BLACK_T "\033[30m"
 #define RED_T "\033[31m"
@@ -100,6 +94,10 @@ namespace JJM
 
 	// Safely clears input buffer, and throws an error message.
 	void __handle_invalid_selection();
+
+	void Clear();
+
+	void AwaitEnter(bool clear);
 
 	// Outputs a message to the console.
 	void Print(const char* message, ...);

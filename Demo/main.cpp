@@ -4,8 +4,9 @@ using namespace JJM;
 
 AppResult JJM::Start(int argc, char **argv)
 {
-	CLEAR;
+	Clear();
 	Print(Color::BRIGHT_MAGENTA, "WELCOME TO THE JJM LIBRARY\n\n");
+	AwaitEnter(true);
 	return CONTINUE;
 }
 

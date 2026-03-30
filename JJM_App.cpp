@@ -1,5 +1,22 @@
 #include "JJM_App.h"
 #include <cstring>
+#include <limits>
+
+void JJM::Clear()
+{
+	#ifdef WINDOWS
+		system("cls");
+	#else
+		system("clear");
+	#endif
+}
+
+void JJM::AwaitEnter(bool clear)
+{
+	cout << "Press Enter to continue...";
+	cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+	if (clear) Clear();
+}
 
 void JJM::Print(const char* message, ...)
 {
@@ -165,11 +182,6 @@ int JJM::Menu::Select()
 
 		return selection - 1;
 	}
-}
-
-int JJM::Menu::Size()
-{
-	return static_cast<int>(menuSize);
 }
 
 void JJM::Rand::SetSeed()
