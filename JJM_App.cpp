@@ -1,7 +1,7 @@
 #include "JJM_App.h"
 #include <cstring>
 
-void JJM_Log(const char* message, ...)
+void JJM::Print(const char* message, ...)
 {
 	va_list args;
 	va_start(args, message);
@@ -9,9 +9,9 @@ void JJM_Log(const char* message, ...)
 	va_end(args);
 }
 
-void JJM_Log(Color color, const char* message, ...)
+void JJM::Print(Color color, const char* message, ...)
 {
-	cout << __get_enum_color(color);
+	cout << JJM::__get_enum_color(color);
 	va_list args;
 	va_start(args, message);
 	vprintf(message, args);
@@ -19,7 +19,7 @@ void JJM_Log(Color color, const char* message, ...)
 	cout << WHITE_T;
 }
 
-void JJM_Log(string message, ...)
+void JJM::Print(string message, ...)
 {
 	va_list args;
 	va_start(args, message);
@@ -27,9 +27,9 @@ void JJM_Log(string message, ...)
 	va_end(args);
 }
 
-void JJM_Log(Color color, string message, ...)
+void JJM::Print(Color color, string message, ...)
 {
-	cout << __get_enum_color(color);
+	cout << JJM::__get_enum_color(color);
 	va_list args;
 	va_start(args, message);
 	vprintf(message.c_str(), args);
@@ -37,7 +37,7 @@ void JJM_Log(Color color, string message, ...)
 	cout << WHITE_T;
 }
 
-void JJM_Debug(const char* message, ...)
+void JJM::Debug(const char* message, ...)
 {
 	cout << BRIGHT_YELLOW_T << "DEBUG: ";
 	va_list args;
@@ -47,7 +47,7 @@ void JJM_Debug(const char* message, ...)
 	cout << WHITE_T << '\n';
 }
 
-void JJM_Error(const char* message, ...)
+void JJM::Error(const char* message, ...)
 {
 	cout << BRIGHT_RED_T << "ERROR: ";
 	va_list args;
@@ -57,7 +57,7 @@ void JJM_Error(const char* message, ...)
 	cout << WHITE_T << '\n';
 }
 
-const char* __get_enum_color(Color color)
+const char* JJM::__get_enum_color(Color color)
 {
 	switch (color)
 	{
@@ -81,26 +81,26 @@ const char* __get_enum_color(Color color)
 	}
 }
 
-void __handle_invalid_selection()
+void JJM::__handle_invalid_selection()
 {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>().max(), '\n');
 	cout << "Invalid input!\n";
 }
 
-JJM_Menu::JJM_Menu(string title, initializer_list<string> menuItems)
-	: JJM_Menu(0, title, menuItems) {
+JJM::Menu::Menu(string title, initializer_list<string> menuItems)
+	: Menu(0, title, menuItems) {
 }
 
-JJM_Menu::JJM_Menu(int column, string title, initializer_list<string> menuItems)
-	: JJM_Menu(column, Color::WHITE, Color::WHITE, title, menuItems) {
+JJM::Menu::Menu(int column, string title, initializer_list<string> menuItems)
+	: Menu(column, Color::WHITE, Color::WHITE, title, menuItems) {
 }
 
-JJM_Menu::JJM_Menu(int column, Color titleColor, string title, initializer_list<string> menuItems)
-	: JJM_Menu(column, titleColor, Color::WHITE, title, menuItems) {
+JJM::Menu::Menu(int column, Color titleColor, string title, initializer_list<string> menuItems)
+	: Menu(column, titleColor, Color::WHITE, title, menuItems) {
 }
 
-JJM_Menu::JJM_Menu(int column, Color titleColor, Color itemColor, string title, initializer_list<string> menuItems)
+JJM::Menu::Menu(int column, Color titleColor, Color itemColor, string title, initializer_list<string> menuItems)
 	: colSep{ column }, titleColor{ titleColor }, itemColor{ itemColor }, title{ title }, menuSize{ menuItems.size() }, multiColumn{ false } {
 	if (colSep != 0)
 		multiColumn = true;
@@ -110,15 +110,15 @@ JJM_Menu::JJM_Menu(int column, Color titleColor, Color itemColor, string title, 
 		items[i] = *(menuItems.begin() + i);
 }
 
-JJM_Menu::~JJM_Menu()
+JJM::Menu::~Menu()
 {
 	delete[] items;
 }
 
-void JJM_Menu::Display() const
+void JJM::Menu::Display() const
 {
 	int itemNum{ 0 };
-	cout << __get_enum_color(titleColor) << title << "\n\n" << WHITE_T;
+	cout << JJM::__get_enum_color(titleColor) << title << "\n\n" << WHITE_T;
 
 	if (multiColumn)
 	{
@@ -127,7 +127,7 @@ void JJM_Menu::Display() const
 			itemNum = i + 1;
 			if (i % 2 == 0)
 			{
-				cout << __get_enum_color(itemColor) << itemNum << ") " << setw(colSep) << left << items[i] << WHITE_T;
+				cout << JJM::__get_enum_color(itemColor) << itemNum << ") " << setw(colSep) << left << items[i] << WHITE_T;
 				if (i == menuSize - 1)
 				{
 					cout << '\n';
@@ -135,7 +135,7 @@ void JJM_Menu::Display() const
 			}
 			else
 			{
-				cout << __get_enum_color(itemColor) << itemNum << ") " << items[i] << '\n' << WHITE_T;
+				cout << JJM::__get_enum_color(itemColor) << itemNum << ") " << items[i] << '\n' << WHITE_T;
 			}
 		}
 	}
@@ -144,12 +144,12 @@ void JJM_Menu::Display() const
 		for (size_t i{ 0 }; i < menuSize; i++)
 		{
 			itemNum = i + 1;
-			cout << __get_enum_color(itemColor) << itemNum << ") " << items[i] << '\n' << WHITE_T;
+			cout << JJM::__get_enum_color(itemColor) << itemNum << ") " << items[i] << '\n' << WHITE_T;
 		}
 	}
 }
 
-int JJM_Menu::Select()
+int JJM::Menu::Select()
 {
 	int selection;
 
@@ -167,28 +167,28 @@ int JJM_Menu::Select()
 	}
 }
 
-int JJM_Menu::Size()
+int JJM::Menu::Size()
 {
 	return static_cast<int>(menuSize);
 }
 
-void JJM_Rand::SetSeed()
+void JJM::Rand::SetSeed()
 {
 	time_t seed{ time(nullptr) };
 	srand(seed);
 }
 
-int JJM_Rand::RangeEx(int min, int max)
+int JJM::Rand::RangeEx(int min, int max)
 {
 	return (rand() % (max - min)) + min;
 }
 
-int JJM_Rand::RangeIn(int min, int max)
+int JJM::Rand::RangeIn(int min, int max)
 {
 	return (rand() % ((max + 1) - min)) + min;
 }
 
-float JJM_Rand::Rangef(float min, float max)
+float JJM::Rand::Rangef(float min, float max)
 {
 	float normal = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 	return (normal * (max - min)) + min;

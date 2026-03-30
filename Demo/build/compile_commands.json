@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/home/lordvanan/Projects/JJM_Lib/Demo/build",
+  "command": "/usr/bin/c++ -DUSE_JJM_CONTEXT=1 -I/home/lordvanan/Projects/JJM_Lib  -o CMakeFiles/Demo.dir/main.cpp.o -c /home/lordvanan/Projects/JJM_Lib/Demo/main.cpp",
+  "file": "/home/lordvanan/Projects/JJM_Lib/Demo/main.cpp",
+  "output": "CMakeFiles/Demo.dir/main.cpp.o"
+},
+{
+  "directory": "/home/lordvanan/Projects/JJM_Lib/Demo/build",
+  "command": "/usr/bin/c++ -DUSE_JJM_CONTEXT=1 -I/home/lordvanan/Projects/JJM_Lib  -o CMakeFiles/Demo.dir/utils.cpp.o -c /home/lordvanan/Projects/JJM_Lib/Demo/utils.cpp",
+  "file": "/home/lordvanan/Projects/JJM_Lib/Demo/utils.cpp",
+  "output": "CMakeFiles/Demo.dir/utils.cpp.o"
+},
+{
+  "directory": "/home/lordvanan/Projects/JJM_Lib/Demo/build/JJM_Lib_build",
+  "command": "/usr/bin/c++ -DUSE_JJM_CONTEXT=1 -I/home/lordvanan/Projects/JJM_Lib  -o CMakeFiles/JJM_Lib.dir/JJM_App.cpp.o -c /home/lordvanan/Projects/JJM_Lib/JJM_App.cpp",
+  "file": "/home/lordvanan/Projects/JJM_Lib/JJM_App.cpp",
+  "output": "JJM_Lib_build/CMakeFiles/JJM_Lib.dir/JJM_App.cpp.o"
+},
+{
+  "directory": "/home/lordvanan/Projects/JJM_Lib/Demo/build/JJM_Lib_build",
+  "command": "/usr/bin/c++ -DUSE_JJM_CONTEXT=1 -I/home/lordvanan/Projects/JJM_Lib  -o CMakeFiles/JJM_Lib.dir/JJM_Time.cpp.o -c /home/lordvanan/Projects/JJM_Lib/JJM_Time.cpp",
+  "file": "/home/lordvanan/Projects/JJM_Lib/JJM_Time.cpp",
+  "output": "JJM_Lib_build/CMakeFiles/JJM_Lib.dir/JJM_Time.cpp.o"
+},
+{
+  "directory": "/home/lordvanan/Projects/JJM_Lib/Demo/build/JJM_Lib_build",
+  "command": "/usr/bin/c++ -DUSE_JJM_CONTEXT=1 -I/home/lordvanan/Projects/JJM_Lib  -o CMakeFiles/JJM_Lib.dir/JJM_Main.cpp.o -c /home/lordvanan/Projects/JJM_Lib/JJM_Main.cpp",
+  "file": "/home/lordvanan/Projects/JJM_Lib/JJM_Main.cpp",
+  "output": "JJM_Lib_build/CMakeFiles/JJM_Lib.dir/JJM_Main.cpp.o"
+},
+{
+  "directory": "/home/lordvanan/Projects/JJM_Lib/Demo/build/JJM_Lib_build",
+  "command": "/usr/bin/c++ -DUSE_JJM_CONTEXT=1 -I/home/lordvanan/Projects/JJM_Lib  -o CMakeFiles/JJM_Lib.dir/JJM_Files.cpp.o -c /home/lordvanan/Projects/JJM_Lib/JJM_Files.cpp",
+  "file": "/home/lordvanan/Projects/JJM_Lib/JJM_Files.cpp",
+  "output": "JJM_Lib_build/CMakeFiles/JJM_Lib.dir/JJM_Files.cpp.o"
+}
+]

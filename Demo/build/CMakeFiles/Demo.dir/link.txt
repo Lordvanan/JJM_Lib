@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Demo.dir/main.cpp.o CMakeFiles/Demo.dir/utils.cpp.o -o Demo  JJM_Lib_build/libJJM_Lib.a 

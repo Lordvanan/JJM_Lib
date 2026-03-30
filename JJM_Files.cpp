@@ -1,26 +1,26 @@
 #include "JJM_Files.h"
 
-JJM_File::JJM_File(const char* file)
+JJM::File::File(const char* file)
 	: filename{ file }, file_open{ false }, current_mode{ Mode::NONE } 
 {
 	current = SetBegin();
 	SetEnd();
 }
 
-JJM_File::~JJM_File() {
+JJM::File::~File() {
 	Close();
 }
 
-void JJM_File::Clear() {
+void JJM::File::Clear() {
 	output_file.open(filename, ios::out | ios::trunc);
 	output_file.close();
 }
 
-void JJM_File::Open() {
+void JJM::File::Open() {
 	Open(Mode::WRITE);
 }
 
-void JJM_File::Open(Mode open_mode) {
+void JJM::File::Open(Mode open_mode) {
 	if (file_open) Close();
 	switch (open_mode) {
 	case Mode::WRITE: 
@@ -42,7 +42,7 @@ void JJM_File::Open(Mode open_mode) {
 	}
 }
 
-void JJM_File::Close() {
+void JJM::File::Close() {
 	if (!file_open) return;
 	if (output_file.is_open()) 
 		output_file.close();
@@ -52,29 +52,29 @@ void JJM_File::Close() {
 	current_mode = Mode::NONE;
 }
 
-void JJM_File::Write(const char* stream) {
+void JJM::File::Write(const char* stream) {
 	if (!file_open || current_mode != Mode::WRITE) 
 		Open();
 	output_file << stream;
 	SetEnd();
 }
 
-void JJM_File::Write(string stream) {
+void JJM::File::Write(string stream) {
 	Write(stream.c_str());
 }
 
-void JJM_File::Append(const char* stream) {
+void JJM::File::Append(const char* stream) {
 	if (!file_open || current_mode != Mode::APPEND) 
 		Open(Mode::APPEND);
 	output_file << stream;
 	SetEnd();
 }
 
-void JJM_File::Append(string stream) {
+void JJM::File::Append(string stream) {
 	Append(stream.c_str());
 }
 
-bool JJM_File::Read(string& out) {
+bool JJM::File::Read(string& out) {
 	if (!file_open || current_mode != Mode::READ) 
 		Open(Mode::READ);
 	input_file.seekg(current);
@@ -86,7 +86,7 @@ bool JJM_File::Read(string& out) {
 	return false;
 }
 
-int JJM_File::SetBegin() {
+int JJM::File::SetBegin() {
 	if (!file_open || current_mode != Mode::READ)
 		Open(Mode::READ);
 	input_file.seekg(0, ios::beg);
@@ -94,7 +94,7 @@ int JJM_File::SetBegin() {
 	return begin;
 }
 
-int JJM_File::SetEnd() {
+int JJM::File::SetEnd() {
 	if (!file_open || current_mode != Mode::READ)
 		Open(Mode::READ);
 	input_file.seekg(0, ios::end);
@@ -102,14 +102,14 @@ int JJM_File::SetEnd() {
 	return end;
 }
 
-bool JJM_File::AtEnd() {
+bool JJM::File::AtEnd() {
 	return current == end;
 }
 
-void JJM_File::operator << (const char* stream) {
+void JJM::File::operator << (const char* stream) {
 	Append(stream);
 }
 
-void JJM_File::operator << (string stream) {
+void JJM::File::operator << (string stream) {
 	Append(stream);
 }

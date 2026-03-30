@@ -1,0 +1,2 @@
+/usr/bin/ar qc libJJM_Lib.a CMakeFiles/JJM_Lib.dir/JJM_App.cpp.o CMakeFiles/JJM_Lib.dir/JJM_Time.cpp.o CMakeFiles/JJM_Lib.dir/JJM_Main.cpp.o CMakeFiles/JJM_Lib.dir/JJM_Files.cpp.o
+/usr/bin/ranlib libJJM_Lib.a

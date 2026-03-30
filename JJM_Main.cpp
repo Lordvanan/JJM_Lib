@@ -3,18 +3,18 @@
 
 int main(int argc, char* argv[])
 {
-	JJM_Rand::SetSeed();
+	JJM::Rand::SetSeed();
 
-	// Calls the main start function and stores the result.
-	AppResult result = JJMApp_Start(argc, argv);
+	//Calls the main start function and stores the result.
+	AppResult result = JJM::Start(argc, argv);
 
 	// The main program loop.
-	while (result == APP_CONTINUE)
+	while (result == CONTINUE)
 	{
-		result = JJMApp_Loop();
+		result = JJM::Loop();
 	}
 
-	JJMApp_End();
+	JJM::End();
 	return 0;
 }
 #endif
