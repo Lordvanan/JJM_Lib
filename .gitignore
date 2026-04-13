@@ -1,2 +1,5 @@
 Demo/demo.sublime-project
 Demo/demo.sublime-workspace
+CMakeLists.sublime-workspace
+Demo/build/
+Demo/.cache/

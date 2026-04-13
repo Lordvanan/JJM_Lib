@@ -1,20 +1,18 @@
-#ifdef USE_JJM_CONTEXT
 #include "JJM_App.h"
 
 int main(int argc, char* argv[])
 {
-	JJM::Rand::SetSeed();
+	JJM_Rand::SetSeed();
 
 	//Calls the main start function and stores the result.
-	AppResult result = JJM::Start(argc, argv);
+	AppResult result = JJMApp_Start(argc, argv);
 
 	// The main program loop.
 	while (result == CONTINUE)
 	{
-		result = JJM::Loop();
+		result = JJMApp_Loop();
 	}
 
-	JJM::End();
+	JJMApp_End();
 	return 0;
 }
-#endif

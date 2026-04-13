@@ -8,8 +8,6 @@
 
 using std::string;
 
-namespace JJM
-{
 	template<typename T>
 	struct Node {
 		string key;
@@ -26,7 +24,7 @@ namespace JJM
 
 
 	template<typename T>
-	class Map {
+	class JJM_Map {
 		NodeElement<T>** nodeArray;
 		unsigned int arraySize, elementCount;
 		bool* primeArray;
@@ -91,9 +89,9 @@ namespace JJM
 		}
 
 	public:
-		Map() : Map(11) { }
+		JJM_Map() : JJM_Map(11) { }
 
-		Map(unsigned int size) : elementCount{ 0 }, internptr{ nullptr } {
+		JJM_Map(unsigned int size) : elementCount{ 0 }, internptr{ nullptr } {
 			SetupPrimeArray();
 			while (primeArray[size] == false) size++;
 			arraySize = size;
@@ -102,7 +100,7 @@ namespace JJM
 				nodeArray[i] = new NodeElement<T>;
 		}
 
-		~Map() {
+		~JJM_Map() {
 			delete[] primeArray;
 			for (int i{ 0 }; i < arraySize; i++) {
 				for (int j{ 0 }; j < nodeArray[i]->childCount; j++) {
@@ -225,5 +223,5 @@ namespace JJM
 			return false;
 		}
 	};
-}
+
 #endif

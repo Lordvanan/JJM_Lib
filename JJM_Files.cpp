@@ -1,26 +1,27 @@
 #include "JJM_Files.h"
+#include "JJM_App.h"
 
-JJM::File::File(const char* file)
+JJM_File::JJM_File(const char* file)
 	: filename{ file }, file_open{ false }, current_mode{ Mode::NONE } 
 {
-	current = SetBegin();
+	current = begin = SetBegin();
 	SetEnd();
 }
 
-JJM::File::~File() {
+JJM_File::~JJM_File() {
 	Close();
 }
 
-void JJM::File::Clear() {
+void JJM_File::Clear() {
 	output_file.open(filename, ios::out | ios::trunc);
 	output_file.close();
 }
 
-void JJM::File::Open() {
+void JJM_File::Open() {
 	Open(Mode::WRITE);
 }
 
-void JJM::File::Open(Mode open_mode) {
+void JJM_File::Open(Mode open_mode) {
 	if (file_open) Close();
 	switch (open_mode) {
 	case Mode::WRITE: 
@@ -42,7 +43,7 @@ void JJM::File::Open(Mode open_mode) {
 	}
 }
 
-void JJM::File::Close() {
+void JJM_File::Close() {
 	if (!file_open) return;
 	if (output_file.is_open()) 
 		output_file.close();
@@ -52,29 +53,29 @@ void JJM::File::Close() {
 	current_mode = Mode::NONE;
 }
 
-void JJM::File::Write(const char* stream) {
+void JJM_File::Write(const char* stream) {
 	if (!file_open || current_mode != Mode::WRITE) 
 		Open();
 	output_file << stream;
 	SetEnd();
 }
 
-void JJM::File::Write(string stream) {
+void JJM_File::Write(string stream) {
 	Write(stream.c_str());
 }
 
-void JJM::File::Append(const char* stream) {
+void JJM_File::Append(const char* stream) {
 	if (!file_open || current_mode != Mode::APPEND) 
 		Open(Mode::APPEND);
 	output_file << stream;
 	SetEnd();
 }
 
-void JJM::File::Append(string stream) {
+void JJM_File::Append(string stream) {
 	Append(stream.c_str());
 }
 
-bool JJM::File::Read(string& out) {
+bool JJM_File::Read(string& out) {
 	if (!file_open || current_mode != Mode::READ) 
 		Open(Mode::READ);
 	input_file.seekg(current);
@@ -86,30 +87,45 @@ bool JJM::File::Read(string& out) {
 	return false;
 }
 
-int JJM::File::SetBegin() {
+bool JJM_File::ReadLine(string& out) {
+	if (!file_open || current_mode != Mode::READ) 
+		Open(Mode::READ);
+	string temp;
+	JJM_Debug("Current: %d\n", current);
+	input_file.seekg(current);
+	if (input_file >> temp)
+	{
+		out.append(temp + " ");
+		current = input_file.tellg();
+		return true;
+	}
+	return false;
+}
+
+int JJM_File::SetBegin() {
 	if (!file_open || current_mode != Mode::READ)
 		Open(Mode::READ);
 	input_file.seekg(0, ios::beg);
-	begin = input_file.tellg();
-	return begin;
+	int set = input_file.tellg();
+	return set;
 }
 
-int JJM::File::SetEnd() {
+int JJM_File::SetEnd() {
 	if (!file_open || current_mode != Mode::READ)
 		Open(Mode::READ);
 	input_file.seekg(0, ios::end);
-	end = input_file.tellg();
-	return end;
+	int set = input_file.tellg();
+	return set;
 }
 
-bool JJM::File::AtEnd() {
+bool JJM_File::AtEnd() {
 	return current == end;
 }
 
-void JJM::File::operator << (const char* stream) {
+void JJM_File::operator << (const char* stream) {
 	Append(stream);
 }
 
-void JJM::File::operator << (string stream) {
+void JJM_File::operator << (string stream) {
 	Append(stream);
 }
